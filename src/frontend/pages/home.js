@@ -93,7 +93,7 @@ const Home = () => {
             <Row>
               <Col md="6">
                 <MaskedInput
-                  label="Expiry Date"
+                  label="Expiration Date"
                   name="expDate"
                   type="text"
                   placeholder="14\21"
