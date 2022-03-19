@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -9,6 +9,8 @@ import Col from '../components/grid/col';
 import Row from '../components/grid/row';
 import Button from '../components/button';
 import * as api from '../services/api';
+import Popup from '../components/popup';
+import { set } from 'lodash';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string().matches(/^\d+$/).min(16).max(16).required(),
@@ -30,19 +32,36 @@ const Buttons = styled.div`
 `;
 
 const Home = () => {
+  const [error, setError] = useState(null);
+
+  const onCloseClick = () => setError(null);
+
   const onChange = (setFieldValue, name, shouldSanitize = true) => (e) => {
     setFieldValue(name, shouldSanitize ? e.target.value.replace(/\D/g, '') : e.target.value);
   };
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
-    const data = await api.bills.submit(values);
-    setSubmitting(false);
-    resetForm(initialValues);
-    alert(JSON.stringify(data));
+    try {
+      const data = await api.bills.submit(values);
+      resetForm(initialValues);
+      alert(JSON.stringify(data));
+    } catch (err) {
+      if (err.response) {
+        return setError(err.response.data);
+      }
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <Base>
+      {error && (
+        <Popup onClick={onCloseClick}>
+          {error}
+        </Popup>
+      )}
       <Text variant="h3" className="mb-40">Payment form</Text>
       <Formik
         initialValues={initialValues}
