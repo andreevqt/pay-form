@@ -2,6 +2,8 @@
 
 const Bill = require('./bill.model');
 
-module.exports.create = (attrs) => {
-  return new Bill(attrs);
+module.exports.create = async (attrs) => {
+  const doc = new Bill(attrs);
+  await doc.save();
+  return doc;
 };

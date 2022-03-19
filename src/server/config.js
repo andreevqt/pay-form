@@ -42,7 +42,7 @@ const config = {
     url: getString(process.env.APP_URL, 'http://localhost'),
   },
   db: {
-    connectionString: getString(process.env.DB_CONNECTION_STRING, 'mongodb://localhost:27017')
+    connectionString: getString(process.env.DB_CONNECTION_STRING, 'mongodb://localhost:27017/test')
   },
   jwt: {
     expiresIn: getString(process.env.JWT_EXPIRES_IN, '15m')
