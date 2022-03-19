@@ -10,7 +10,6 @@ import Row from '../components/grid/row';
 import Button from '../components/button';
 import * as api from '../services/api';
 import Popup from '../components/popup';
-import { set } from 'lodash';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string().matches(/^\d+$/).min(16).max(16).required(),
