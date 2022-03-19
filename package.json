@@ -16,7 +16,9 @@
     "version": "node ./src/server/index.js --version",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve --mode=development",
+    "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node ./src/server/index.js serve",
+    "prestart::debug": "npm run build",
     "start::debug": "cross-env NODE_ENV=debug LOG_LEVEL=debug nodemon ./src/server/index.js serve",
     "generate::secret": "node ./src/server/index.js secret",
     "seed": "node ./src/server/index.js seed 100"
