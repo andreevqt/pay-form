@@ -1,0 +1,15 @@
+node_modules/
+
+# env files
+.env
+
+# log files
+logs/*
+!logs/.gitkeep
+
+# rest client
+*.http
+
+# other
+build/
+dist/
