@@ -1,32 +1,21 @@
-# Блог
-
-![ci](https://github.com/qprquo/blog/actions/workflows/ci.yml/badge.svg)
+# Pay Form
 
 ## О проекте в этом репозитории
 
-Rest API для блога
-
-[Демо](https://api.kino-reaction.ru) Данные для входа: логин - `admin@admin.com`, пароль - `123456` <br>
-[Документация](https://api.kino-reaction.ru/docs)
+Форма с данными кредитной карты
 
 ## Запуск
 
-Убедитесь что на вашей системе установлена mariadb или mysql.<br/>
+Убедитесь что на вашей системе установлено [mongodb](https://www.mongodb.com/) <br/>
 
 Переместитесь в директорию приложения и создайтие `.env` файл со следующими переменными:
 
 ```sh
-# пользователь бд
-DB_USER=<user_name>
-# пароль
-DB_PASSWORD=<user_password>
-# имя базы данных
-DB_DATABASE=<database_name>
+# mongodb connection string
+DB_CONNECTION_STRING=mongodb://localhost:27017
 ```
-
 Выполните следующие команды:
-1. `npm install` - устанавливает зависимости 
-2. `npm run build` - собирает frontend 
-3. `npm run generate::secret` - генерирует secret key
-4. `npm run migrate` - применят миграции
-5. `npm run start::debug` или `npm run start` — запускает сервер
+1. `npm install` - устанавливает зависимости
+2. `npm run start` - запускает сервер
+
+Откройте в браузере [http://localhost:3000/](http://localhost:3000/)
