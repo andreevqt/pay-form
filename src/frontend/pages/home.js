@@ -12,10 +12,10 @@ import * as api from '../services/api';
 import Popup from '../components/popup';
 
 const validationSchema = Yup.object({
-  cardNumber: Yup.string().matches(/^\d+$/).min(16).max(16).required(),
-  expDate: Yup.string().matches(/^\d\d\\\d\d$/).required(),
-  cvv: Yup.string().matches(/^\d+$/).min(3).max(3).required(),
-  amount: Yup.number().required()
+  cardNumber: Yup.string().label('Card Number').matches(/^\d+$/, 'should consist of digits').min(16).max(16).required(),
+  expDate: Yup.string().label('Expiration Date').matches(/^\d{2}\/\d{4}$/, 'should be in following format MM/YYYY').required(),
+  cvv: Yup.string().label('CVV').matches(/^\d+$/, 'should consist of digits').min(3).max(3).required(),
+  amount: Yup.number().label('Amount').required()
 });
 
 const initialValues = {
@@ -95,9 +95,9 @@ const Home = () => {
                   label="Expiration Date"
                   name="expDate"
                   type="text"
-                  placeholder="14\21"
+                  placeholder="14/2021"
                   className="mb-15"
-                  mask="00\\00"
+                  mask="00/0000"
                   value={values.expDate}
                   onChange={onChange(setFieldValue, 'expDate', false)}
                   onBlur={handleBlur}
@@ -128,7 +128,6 @@ const Home = () => {
               value={values.amount}
               mask={Number}
               min={1}
-              max={100000000000000}
               onChange={onChange(setFieldValue, 'amount')}
               onBlur={handleBlur}
               error={errors.amount && touched.amount}
