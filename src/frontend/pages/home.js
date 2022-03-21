@@ -95,7 +95,7 @@ const Home = () => {
                   label="Expiration Date"
                   name="expDate"
                   type="text"
-                  placeholder="14/2021"
+                  placeholder="11/2021"
                   className="mb-15"
                   mask="00/0000"
                   value={values.expDate}
